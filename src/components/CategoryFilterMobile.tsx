@@ -77,7 +77,7 @@ export function CategoryFilterMobile({
           id={listId}
           role="listbox"
           aria-label="Categorias"
-          className="absolute left-0 right-0 top-[calc(100%+0.35rem)] z-20 flex max-h-[min(70vh,22rem)] flex-col gap-1 overflow-y-auto rounded-2xl border border-rose/60 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,250,246,0.96)_100%)] p-2 shadow-lift backdrop-blur-sm"
+          className="absolute left-0 right-0 top-[calc(100%+0.35rem)] z-[80] flex max-h-[min(70vh,22rem)] flex-col gap-1 overflow-y-auto rounded-2xl border border-rose/60 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(255,250,246,0.96)_100%)] p-2 shadow-lift backdrop-blur-sm"
         >
           {categories.map((category) => {
             const isActive = activeCategory === category

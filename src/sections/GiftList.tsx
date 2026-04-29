@@ -38,7 +38,7 @@ export function GiftList() {
       title="Preparamos algumas sugestões para quem quiser participar desse momento com a gente"
       description="Os itens abaixo são apenas sugestões, organizadas por categoria para facilitar. Fique à vontade para escolher da forma que fizer mais sentido pra você."
     >
-      <div className="glass-panel-strong mb-6 flex flex-col gap-4 p-4 sm:mb-8 sm:gap-4 sm:p-6 sm:flex-row sm:items-start sm:justify-between sm:gap-6 md:gap-8">
+      <div className="glass-panel-strong relative z-20 mb-6 flex flex-col gap-4 overflow-visible p-4 sm:mb-8 sm:gap-4 sm:p-6 sm:flex-row sm:items-start sm:justify-between sm:gap-6 md:gap-8">
         <div className="max-w-[min(100%,16rem)] shrink-0 sm:max-w-[14rem]">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-truffle/45">
             Categorias
@@ -78,7 +78,7 @@ export function GiftList() {
         </div>
       </div>
 
-      <motion.div layout className={listLayoutClass}>
+      <motion.div layout className={`relative z-0 ${listLayoutClass}`}>
         <AnimatePresence mode="popLayout">
           {filteredGifts.map((gift, index) => (
             <GiftCard
