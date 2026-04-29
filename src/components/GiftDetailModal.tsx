@@ -144,12 +144,6 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 </svg>
                 Voltar
               </button>
-              <h2
-                id={pixStepTitleId}
-                className="min-w-0 flex-1 truncate text-center font-display text-base font-semibold leading-tight text-truffle lg:hidden"
-              >
-                Contribuir com Pix
-              </h2>
             </>
           ) : null}
           <button
