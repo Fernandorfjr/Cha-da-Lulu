@@ -88,7 +88,7 @@ export function SiteHeader() {
         {menuOpen ? (
           <div
             id="mobile-nav-panel"
-            className="flex flex-col gap-1 border-t border-rose/40 pt-3 sm:hidden"
+            className="mt-3 flex flex-col gap-1 border-t border-rose/40 pt-4 sm:hidden"
           >
             {navigation.map((item) => (
               <a key={item.href} href={item.href} className={linkClassName} onClick={closeMenu}>

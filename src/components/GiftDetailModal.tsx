@@ -144,13 +144,12 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 </svg>
                 Voltar
               </button>
+              <span id={pixStepTitleId} className="sr-only">
+                Contribuir com Pix
+              </span>
             </>
           ) : null}
-          <button
-            type="button"
-            onClick={onClose}
-            className={`${modalChromeButtonClass} ${showPixStepHeader ? '' : 'ml-auto'}`}
-          >
+          <button type="button" onClick={onClose} className={`${modalChromeButtonClass} ml-auto`}>
             Fechar
           </button>
         </header>
