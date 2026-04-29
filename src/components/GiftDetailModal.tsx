@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import type { GiftItem } from '../types'
 import { PixContributionPanel } from './PixContributionPanel'
@@ -38,30 +38,24 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
   const backButtonRef = useRef<HTMLButtonElement>(null)
   const dialogLabelledBy = pixOpen && narrowLayout ? pixStepTitleId : titleId
 
-  useEffect(() => {
-    const scrollY = window.scrollY
-    const prevOverflow = document.body.style.overflow
-    const prevPosition = document.body.style.position
-    const prevTop = document.body.style.top
-    const prevLeft = document.body.style.left
-    const prevRight = document.body.style.right
-    const prevWidth = document.body.style.width
+  useLayoutEffect(() => {
+    const root = document.documentElement
+    const body = document.body
+    const prevRootOverflow = root.style.overflow
+    const prevBodyOverflow = body.style.overflow
+    const prevRootPaddingRight = root.style.paddingRight
+    const scrollbarWidth = window.innerWidth - root.clientWidth
 
-    document.body.style.overflow = 'hidden'
-    document.body.style.position = 'fixed'
-    document.body.style.top = `-${scrollY}px`
-    document.body.style.left = '0'
-    document.body.style.right = '0'
-    document.body.style.width = '100%'
+    root.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+    if (scrollbarWidth > 0) {
+      root.style.paddingRight = `${scrollbarWidth}px`
+    }
 
     return () => {
-      document.body.style.overflow = prevOverflow
-      document.body.style.position = prevPosition
-      document.body.style.top = prevTop
-      document.body.style.left = prevLeft
-      document.body.style.right = prevRight
-      document.body.style.width = prevWidth
-      window.scrollTo(0, scrollY)
+      root.style.overflow = prevRootOverflow
+      body.style.overflow = prevBodyOverflow
+      root.style.paddingRight = prevRootPaddingRight
     }
   }, [])
 
@@ -78,7 +72,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
   useEffect(() => {
     if (!pixOpen || !narrowLayout) return
     const id = requestAnimationFrame(() => {
-      backButtonRef.current?.focus()
+      backButtonRef.current?.focus({ preventScroll: true })
     })
     return () => cancelAnimationFrame(id)
   }, [pixOpen, narrowLayout])

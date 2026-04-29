@@ -70,7 +70,7 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
   return (
     <motion.button
       type="button"
-      layout
+      layout={false}
       initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
       transition={transition}
