@@ -110,11 +110,11 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
 
         <div className="soft-divider" />
 
-        <div className="flex flex-col items-start gap-1.5 text-left min-[400px]:flex-row min-[400px]:flex-wrap min-[400px]:items-end min-[400px]:justify-between min-[400px]:gap-x-4 min-[400px]:text-left">
-          <span className="text-xs font-semibold uppercase tracking-[0.28em] text-truffle/45">
+        <div className="flex items-end justify-between gap-3">
+          <span className="min-w-0 text-[0.68rem] font-semibold uppercase leading-snug tracking-[0.18em] text-truffle/45 sm:text-xs sm:tracking-[0.28em]">
             Valor sugerido
           </span>
-          <p className="w-full text-left font-display text-[1.55rem] font-semibold tabular-nums leading-none text-truffle min-[400px]:w-auto min-[400px]:text-right min-[400px]:text-[1.85rem] sm:text-[2.15rem]">
+          <p className="shrink-0 text-right font-display text-[1.55rem] font-semibold tabular-nums leading-none text-truffle min-[400px]:text-[1.85rem] sm:text-[2.15rem]">
             {currencyFormatter.format(gift.suggestedValue)}
           </p>
         </div>
