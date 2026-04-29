@@ -42,6 +42,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
     const root = document.documentElement
     const body = document.body
     const scrollY = window.scrollY
+    const scrollBehaviorAtStart = root.style.scrollBehavior
 
     const prevRootOverflow = root.style.overflow
     const prevRootHeight = root.style.height
@@ -55,6 +56,8 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
     const prevBodyWidth = body.style.width
 
     const scrollbarWidth = window.innerWidth - root.clientWidth
+
+    root.style.scrollBehavior = 'auto'
 
     root.style.overflow = 'hidden'
     root.style.height = '100%'
@@ -71,10 +74,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
     body.style.width = '100%'
 
     return () => {
-      root.style.overflow = prevRootOverflow
-      root.style.height = prevRootHeight
-      root.style.paddingRight = prevRootPaddingRight
-      root.style.overscrollBehavior = prevRootOverscroll
+      root.style.scrollBehavior = 'auto'
 
       body.style.overflow = prevBodyOverflow
       body.style.position = prevBodyPosition
@@ -83,9 +83,15 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
       body.style.right = prevBodyRight
       body.style.width = prevBodyWidth
 
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' })
-      })
+      root.style.overflow = prevRootOverflow
+      root.style.height = prevRootHeight
+      root.style.paddingRight = prevRootPaddingRight
+      root.style.overscrollBehavior = prevRootOverscroll
+
+      window.scrollTo(0, scrollY)
+      document.documentElement.scrollTop = scrollY
+
+      root.style.scrollBehavior = scrollBehaviorAtStart
     }
   }, [])
 
