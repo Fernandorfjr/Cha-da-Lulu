@@ -110,18 +110,13 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
 
         <div className="soft-divider" />
 
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-truffle/45">
-              Valor sugerido
-            </span>
-            <p className="mt-1.5 font-display text-[1.85rem] font-semibold leading-none text-truffle sm:mt-2 sm:text-[2.15rem]">
-              {currencyFormatter.format(gift.suggestedValue)}
-            </p>
-          </div>
-          <span className="rounded-full bg-blush px-3 py-1 text-sm font-medium text-truffle/70">
-            Presente
+        <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1">
+          <span className="text-xs font-semibold uppercase tracking-[0.28em] text-truffle/45">
+            Valor sugerido
           </span>
+          <p className="font-display text-[1.85rem] font-semibold leading-none text-truffle sm:text-[2.15rem]">
+            {currencyFormatter.format(gift.suggestedValue)}
+          </p>
         </div>
       </div>
     </motion.button>

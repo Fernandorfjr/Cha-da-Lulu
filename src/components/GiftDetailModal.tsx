@@ -190,7 +190,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
               <button
                 type="button"
                 onClick={() => setPixOpen((v) => !v)}
-                className="button-primary w-full max-w-md lg:w-auto lg:min-h-[4rem] lg:min-w-[12.5rem] lg:max-w-lg lg:px-10 lg:py-4 lg:text-base"
+                className="button-primary w-full max-w-md lg:w-full lg:max-w-none lg:px-10"
               >
                 <span className="lg:hidden">Presentear</span>
                 <span className="hidden lg:inline">
