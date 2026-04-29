@@ -35,13 +35,14 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
   const narrowLayout = useNarrowModalLayout()
   const titleId = useId()
   const pixStepTitleId = useId()
+  const dialogRef = useRef<HTMLDivElement>(null)
   const backButtonRef = useRef<HTMLButtonElement>(null)
+  const touchStartYRef = useRef(0)
   const dialogLabelledBy = pixOpen && narrowLayout ? pixStepTitleId : titleId
 
   useLayoutEffect(() => {
     const root = document.documentElement
     const body = document.body
-    const scrollY = window.scrollY
     const scrollBehaviorAtStart = root.style.scrollBehavior
 
     const prevRootOverflow = root.style.overflow
@@ -49,11 +50,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
     const prevRootPaddingRight = root.style.paddingRight
     const prevRootOverscroll = root.style.overscrollBehavior
     const prevBodyOverflow = body.style.overflow
-    const prevBodyPosition = body.style.position
-    const prevBodyTop = body.style.top
-    const prevBodyLeft = body.style.left
-    const prevBodyRight = body.style.right
-    const prevBodyWidth = body.style.width
+    const prevBodyOverscroll = body.style.overscrollBehavior
 
     const scrollbarWidth = window.innerWidth - root.clientWidth
 
@@ -67,29 +64,71 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
     }
 
     body.style.overflow = 'hidden'
-    body.style.position = 'fixed'
-    body.style.top = `-${scrollY}px`
-    body.style.left = '0'
-    body.style.right = '0'
-    body.style.width = '100%'
+    body.style.overscrollBehavior = 'none'
+
+    const findScrollable = (target: EventTarget | null) => {
+      const dialog = dialogRef.current
+      if (!(target instanceof Node) || !dialog?.contains(target)) return null
+
+      let node: Node | null = target
+      while (node && node !== dialog) {
+        if (node instanceof HTMLElement) {
+          const canScroll = node.scrollHeight > node.clientHeight
+          if (canScroll && node.dataset.modalScroll === 'true') return node
+        }
+        node = node.parentNode
+      }
+
+      return null
+    }
+
+    const shouldPreventScroll = (scrollable: HTMLElement | null, deltaY: number) => {
+      if (!scrollable) return true
+
+      const atTop = scrollable.scrollTop <= 0
+      const atBottom = Math.ceil(scrollable.scrollTop + scrollable.clientHeight) >= scrollable.scrollHeight
+
+      return (atTop && deltaY < 0) || (atBottom && deltaY > 0)
+    }
+
+    const onWheel = (event: WheelEvent) => {
+      const scrollable = findScrollable(event.target)
+      if (shouldPreventScroll(scrollable, event.deltaY)) {
+        event.preventDefault()
+      }
+    }
+
+    const onTouchStart = (event: TouchEvent) => {
+      touchStartYRef.current = event.touches[0]?.clientY ?? 0
+    }
+
+    const onTouchMove = (event: TouchEvent) => {
+      const scrollable = findScrollable(event.target)
+      const currentY = event.touches[0]?.clientY ?? touchStartYRef.current
+      const deltaY = touchStartYRef.current - currentY
+
+      if (shouldPreventScroll(scrollable, deltaY)) {
+        event.preventDefault()
+      }
+    }
+
+    document.addEventListener('wheel', onWheel, { passive: false, capture: true })
+    document.addEventListener('touchstart', onTouchStart, { passive: true, capture: true })
+    document.addEventListener('touchmove', onTouchMove, { passive: false, capture: true })
 
     return () => {
       root.style.scrollBehavior = 'auto'
+      document.removeEventListener('wheel', onWheel, true)
+      document.removeEventListener('touchstart', onTouchStart, true)
+      document.removeEventListener('touchmove', onTouchMove, true)
 
       body.style.overflow = prevBodyOverflow
-      body.style.position = prevBodyPosition
-      body.style.top = prevBodyTop
-      body.style.left = prevBodyLeft
-      body.style.right = prevBodyRight
-      body.style.width = prevBodyWidth
+      body.style.overscrollBehavior = prevBodyOverscroll
 
       root.style.overflow = prevRootOverflow
       root.style.height = prevRootHeight
       root.style.paddingRight = prevRootPaddingRight
       root.style.overscrollBehavior = prevRootOverscroll
-
-      window.scrollTo(0, scrollY)
-      document.documentElement.scrollTop = scrollY
 
       root.style.scrollBehavior = scrollBehaviorAtStart
     }
@@ -145,6 +184,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
       onClick={onClose}
     >
       <motion.div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogLabelledBy}
@@ -190,6 +230,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
           }`}
         >
           <div
+            data-modal-scroll="true"
             className={`min-h-0 flex-col gap-4 overflow-y-auto overscroll-y-contain p-4 sm:gap-5 sm:p-8 ${
               pixOpen ? 'hidden lg:flex' : 'flex'
             }`}
@@ -246,7 +287,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="flex min-h-0 flex-1 flex-col overflow-hidden overscroll-y-contain border-t border-rose/20 bg-cream/35 lg:max-h-[min(92dvh,920px)] lg:overflow-y-auto lg:border-t-0"
               >
-                <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-4 sm:p-8 lg:overflow-visible lg:p-8">
+                <div data-modal-scroll="true" className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-4 sm:p-8 lg:overflow-visible lg:p-8">
                   {pixIntro}
                 </div>
               </motion.div>
