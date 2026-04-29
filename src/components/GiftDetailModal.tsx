@@ -167,7 +167,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 />
               </div>
             </div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-truffle/50">
+            <span className="inline-flex w-fit rounded-full bg-truffle px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-soft ring-1 ring-white/35">
               {gift.category}
             </span>
             <h2
@@ -186,16 +186,18 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 {currencyFormatter.format(gift.suggestedValue)}
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => setPixOpen((v) => !v)}
-              className="button-primary w-full lg:w-auto lg:max-w-xs"
-            >
-              <span className="lg:hidden">Presentear</span>
-              <span className="hidden lg:inline">
-                {pixOpen ? 'Ocultar dados do Pix' : 'Presentear'}
-              </span>
-            </button>
+            <div className="flex w-full justify-center">
+              <button
+                type="button"
+                onClick={() => setPixOpen((v) => !v)}
+                className="button-primary w-full max-w-md lg:w-auto lg:min-w-[12.5rem] lg:max-w-lg"
+              >
+                <span className="lg:hidden">Presentear</span>
+                <span className="hidden lg:inline">
+                  {pixOpen ? 'Ocultar dados do Pix' : 'Presentear'}
+                </span>
+              </button>
+            </div>
           </div>
 
           <AnimatePresence initial={false}>
