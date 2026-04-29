@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 6rem);
+  overflow-x: clip;
+  overflow-y: auto;
+}
+
+body {
+  @apply m-0 bg-cream font-sans text-truffle antialiased;
+  overflow: visible;
+  background-image:
+    radial-gradient(circle at top left, rgba(248, 232, 232, 0.85), transparent 30%),
+    radial-gradient(circle at right top, rgba(216, 191, 156, 0.12), transparent 24%),
+    radial-gradient(circle at center 35%, rgba(255, 255, 255, 0.72), transparent 32%),
+    linear-gradient(180deg, #fffdfb 0%, #fff7f3 50%, #fffaf6 100%);
+}
+
+#root {
+  @apply min-h-screen;
+  overflow: visible;
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  ::selection {
+    @apply bg-rose/40 text-truffle;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+@layer components {
+  /* A página não deve virar um contêiner de scroll próprio. */
+  .page-shell {
+    @apply relative;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .page-shell::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(90, 65, 65, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(90, 65, 65, 0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 88%);
+    opacity: 0.22;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-14 sm:px-8 sm:py-20 md:py-24 lg:px-10;
+  }
+
+  .section-label {
+    @apply mb-4 inline-flex items-center rounded-full px-3.5 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.3em] shadow-soft backdrop-blur sm:px-4 sm:py-2 sm:text-[0.68rem] sm:tracking-[0.34em];
+    border: 1px solid rgba(231, 199, 199, 0.5);
+    background: rgba(255, 255, 255, 0.75);
+    color: rgba(90, 65, 65, 0.7);
+  }
+
+  .section-title {
+    @apply font-display text-[2.1rem] font-semibold leading-[0.96] text-truffle sm:text-5xl lg:text-6xl;
+    letter-spacing: -0.03em;
+  }
+
+  .section-description {
+    @apply mt-4 max-w-2xl text-[0.95rem] leading-7 sm:mt-5 sm:text-lg sm:leading-8;
+    color: rgba(90, 65, 65, 0.72);
+  }
+
+  .glass-panel {
+    @apply rounded-4xl border border-white/60 bg-white/75 shadow-soft backdrop-blur;
+  }
+
+  .glass-panel-strong {
+    @apply rounded-4xl border shadow-soft backdrop-blur;
+    border-color: rgba(255, 255, 255, 0.78);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 250, 246, 0.72) 100%);
+    box-shadow:
+      0 20px 60px rgba(90, 65, 65, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  .subtle-kicker {
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.32em];
+    color: rgba(90, 65, 65, 0.45);
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-truffle px-6 py-3 text-sm font-semibold text-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:bg-[#4a3333] hover:shadow-lift focus:outline-none focus:ring-2 focus:ring-champagne/60 focus:ring-offset-2;
+    min-height: 3.25rem;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-truffle transition duration-300 hover:-translate-y-0.5 hover:border-champagne hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2;
+    border: 1px solid rgba(231, 199, 199, 0.7);
+    background: rgba(255, 255, 255, 0.8);
+    --tw-ring-color: rgba(231, 199, 199, 0.4);
+    min-height: 3.25rem;
+  }
+
+  .soft-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-rose/50 to-transparent;
+  }
+
+  .ornament-line {
+    @apply flex items-center gap-3;
+  }
+
+  .ornament-line::before,
+  .ornament-line::after {
+    content: '';
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, rgba(216, 191, 156, 0.8), transparent);
+  }
+}
