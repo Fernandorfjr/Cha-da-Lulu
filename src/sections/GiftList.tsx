@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 
 import { CategoryFilter } from '../components/CategoryFilter'
@@ -78,19 +77,17 @@ export function GiftList() {
         </div>
       </div>
 
-      <motion.div layout className={`relative z-0 ${listLayoutClass}`}>
-        <AnimatePresence mode="popLayout">
-          {filteredGifts.map((gift, index) => (
-            <GiftCard
-              key={gift.id}
-              gift={gift}
-              index={index}
-              onSelect={setSelectedGift}
-              variant={viewMode === 'list' ? 'list' : 'card'}
-            />
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      <div className={`relative z-0 ${listLayoutClass}`}>
+        {filteredGifts.map((gift, index) => (
+          <GiftCard
+            key={gift.id}
+            gift={gift}
+            index={index}
+            onSelect={setSelectedGift}
+            variant={viewMode === 'list' ? 'list' : 'card'}
+          />
+        ))}
+      </div>
     </SectionWrapper>
     </>
   )

@@ -18,8 +18,8 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
   const prefersReducedMotion = useReducedMotion()
 
   const transition = {
-    duration: prefersReducedMotion ? 0.18 : 0.35,
-    delay: prefersReducedMotion ? 0 : Math.min(index * 0.03, 0.35),
+    duration: prefersReducedMotion ? 0.12 : 0.18,
+    delay: prefersReducedMotion ? 0 : Math.min(index * 0.006, 0.06),
   }
 
   if (variant === 'list') {
@@ -27,7 +27,7 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
       <motion.button
         type="button"
         layout={false}
-        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
+        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 3 }}
         animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
         transition={transition}
         whileHover={prefersReducedMotion ? undefined : { y: -2 }}
@@ -71,7 +71,7 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
     <motion.button
       type="button"
       layout={false}
-      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 4 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
       transition={transition}
       whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.015 }}

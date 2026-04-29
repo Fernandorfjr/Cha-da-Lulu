@@ -15,7 +15,7 @@ export function CategoryFilter({
   const rowLayout = noWrap ? 'flex-nowrap' : 'flex-wrap'
 
   return (
-    <div className={`flex gap-2 sm:gap-3 ${rowLayout}`}>
+    <div className={`flex gap-2 py-1 sm:gap-3 ${rowLayout}`}>
       {categories.map((category) => {
         const isActive = activeCategory === category
 
@@ -24,10 +24,10 @@ export function CategoryFilter({
             key={category}
             type="button"
             onClick={() => onChange(category)}
-            className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-[0.82rem] font-semibold leading-none transition duration-300 sm:px-5 sm:text-sm ${
+            className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2.5 text-[0.82rem] font-semibold leading-none transition-colors duration-200 sm:px-5 sm:text-sm ${
               isActive
                 ? 'bg-truffle text-white shadow-soft ring-1 ring-white/40'
-                : 'border border-rose/70 bg-white/80 text-truffle hover:-translate-y-0.5 hover:border-champagne hover:bg-white'
+                : 'border border-rose/70 bg-white/80 text-truffle hover:border-champagne hover:bg-white'
             }`}
           >
             {category}
