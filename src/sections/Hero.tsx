@@ -13,7 +13,7 @@ export function Hero() {
   ]
 
   return (
-    <section className="section-shell relative pb-8 pt-28 sm:pb-14 sm:pt-28 lg:pb-20 lg:pt-24">
+    <section className="section-shell relative pb-8 pt-24 sm:pb-14 sm:pt-28 lg:pb-20 lg:pt-24">
       <motion.div
         className="glass-panel-strong relative overflow-hidden px-4 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-12"
         initial={false}
@@ -24,12 +24,11 @@ export function Hero() {
                 opacity: [0.94, 1],
                 y: [16, 0],
                 scale: [0.99, 1],
-                filter: ['blur(2px)', 'blur(0px)'],
               }
         }
-        viewport={{ once: false, amount: 0.18, margin: '0px 0px -80px 0px' }}
+        viewport={{ once: true, amount: 0.18, margin: '0px 0px -80px 0px' }}
         transition={{ duration: prefersReducedMotion ? 0.2 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-        style={{ willChange: 'transform, opacity, filter' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         <div className="absolute inset-0 bg-hero-glow" aria-hidden="true" />
         <div className="absolute -left-16 top-20 h-40 w-40 rounded-full bg-rose/20 blur-3xl" />

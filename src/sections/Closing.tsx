@@ -20,11 +20,10 @@ export function Closing() {
           opacity: [0.92, 1],
           y: [22, 0],
           scale: [0.988, 1],
-          filter: ['blur(3px)', 'blur(0px)'],
         }}
-        viewport={{ once: false, amount: 0.12 }}
+        viewport={{ once: true, amount: 0.12 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        style={{ willChange: 'transform, opacity, filter' }}
+        style={{ willChange: 'transform, opacity' }}
         className="glass-panel-strong overflow-hidden p-8 text-center sm:p-12"
       >
         <div className="mx-auto max-w-3xl">

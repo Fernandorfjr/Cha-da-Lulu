@@ -90,17 +90,40 @@ body {
   }
 
   .glass-panel {
-    @apply rounded-4xl border border-white/60 bg-white/75 shadow-soft backdrop-blur;
+    @apply rounded-4xl border shadow-soft backdrop-blur;
+    border-color: rgba(231, 199, 199, 0.55);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow:
+      0 12px 40px rgba(90, 65, 65, 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
 
   .glass-panel-strong {
     @apply rounded-4xl border shadow-soft backdrop-blur;
-    border-color: rgba(255, 255, 255, 0.78);
+    border-color: rgba(231, 199, 199, 0.65);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 250, 246, 0.72) 100%);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 248, 244, 0.88) 100%);
     box-shadow:
-      0 20px 60px rgba(90, 65, 65, 0.08),
+      0 20px 60px rgba(90, 65, 65, 0.1),
+      0 0 0 1px rgba(90, 65, 65, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  @media (max-width: 640px) {
+    .glass-panel-strong {
+      border-color: rgba(231, 199, 199, 0.85);
+      box-shadow:
+        0 16px 48px rgba(90, 65, 65, 0.12),
+        0 0 0 1px rgba(90, 65, 65, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .glass-panel {
+      border-color: rgba(231, 199, 199, 0.75);
+      box-shadow:
+        0 14px 36px rgba(90, 65, 65, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    }
   }
 
   .subtle-kicker {

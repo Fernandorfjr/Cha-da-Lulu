@@ -1,113 +1,184 @@
-# Chá da Luisa
+# Luisa’s Baby Shower
 
-Landing page estática, elegante e responsiva para um chá de bebê online, construída com React, Vite, Tailwind CSS e Framer Motion.
+A simple and delicate landing page created to organize an online baby shower.
 
-## Rodar localmente
+The goal was to create a light and comfortable experience where friends and family could participate even from a distance, without pressure and in a natural way.
+
+---
+
+## About the project
+
+This project came from a real need: organizing a baby shower in a more personal way than traditional solutions.
+
+The focus was not only functionality, but mainly:
+
+* making the experience feel comfortable (without feeling like a request for money)
+* keeping a clean and elegant visual style
+* organizing suggestions in a clear way
+* simplifying the contribution process
+
+---
+
+## Product decisions
+
+Some important choices during development:
+
+* No complex checkout
+  direct Pix usage for simplicity
+
+* Suggestions instead of obligation
+  wording designed to avoid pressure
+
+* Editorial design over e-commerce style
+  less “store-like”, more personal
+
+* Humanized copy
+  avoiding generic or artificial text
+
+---
+
+## Tech stack
+
+React
+Vite
+Tailwind CSS
+Framer Motion
+
+---
+
+## Running locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra o endereço exibido pelo Vite no navegador.
+---
 
-## Gerar build de produção
+## Build
 
 ```bash
 npm run build
 ```
 
-O build final será gerado na pasta `dist/`.
+---
 
-## Deploy no Render
+## Deployment
 
-Este projeto está pronto para deploy como **Static Site** no Render.
+Prepared to be deployed as a Static Site (e.g. Render).
 
-- **Build Command:** `npm install && npm run build`
-- **Publish Directory:** `dist`
+Build command: npm run build
+Output: dist/
 
-## Onde editar o conteúdo
+---
 
-- Textos, nome da bebê, data, Pix e links: `src/data/config.ts`
-- Lista de presentes: `src/data/gifts.ts`
-- Imagens locais e placeholders: `public/images/`
+## Where to edit
 
-Substituições mais prováveis:
+Main content: src/data/config.ts
+Gift list: src/data/gifts.ts
+Images: public/images/
 
-- Imagem principal: `public/images/hero-illustration.svg`
-- Foto da família / bebê: `public/images/photo.svg`
-- QR code Pix: `public/images/qr-code.png` (pode ser PNG ou SVG)
-- Placeholders dos presentes: `public/images/gifts/`
-# React + TypeScript + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Note
 
-Currently, two official plugins are available:
+More than a technical project, this page was designed around the user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The goal was to make everything feel natural, light, and thoughtful — without unnecessary complexity or pressure.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Chá da Luisa
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Uma landing page simples e delicada criada para organizar um chá de bebê à distância.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+A ideia foi criar uma experiência leve, onde amigos e família pudessem participar mesmo estando longe, sem pressão e de forma natural.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Sobre o projeto
+
+Esse projeto nasceu de uma necessidade real: organizar um chá de bebê online de forma mais pessoal do que as soluções tradicionais.
+
+O foco não foi só funcionalidade, mas principalmente:
+
+* deixar a experiência confortável (sem parecer cobrança)
+* manter um visual elegante e leve
+* organizar sugestões de forma clara
+* facilitar a contribuição sem complicar
+
+---
+
+## Decisões de produto
+
+Algumas escolhas importantes durante o desenvolvimento:
+
+* Sem checkout complexo
+  uso de Pix direto, mais simples e familiar
+
+* Lista como sugestão (não obrigação)
+  linguagem pensada para não gerar pressão
+
+* Design mais editorial que e-commerce
+  menos “cara de loja”, mais “momento pessoal”
+
+* Texto humanizado
+  evitando frases genéricas ou artificiais
+
+---
+
+## Tecnologias
+
+React
+Vite
+Tailwind CSS
+Framer Motion
+
+---
+
+## Rodando localmente
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
+
+---
+
+## Deploy
+
+Projeto preparado para deploy como Static Site (ex: Render).
+
+Build command: npm run build
+Output: dist/
+
+---
+
+## Onde editar
+
+Conteúdo geral: src/data/config.ts
+Lista de presentes: src/data/gifts.ts
+Imagens: public/images/
+
+---
+
+## Observação
+
+Mais do que um projeto técnico, essa página foi construída pensando na experiência de quem acessa.
+
+A ideia era que tudo parecesse natural, leve e com carinho — sem excesso de informação ou pressão.
+
+---
+
+---
+
+

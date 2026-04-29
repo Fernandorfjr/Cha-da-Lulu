@@ -1,16 +1,36 @@
 import { useCallback, useRef, type KeyboardEvent } from 'react'
 
-export type GiftViewMode = 'grid2' | 'grid3' | 'list'
+export type GiftViewMode = 'grid' | 'list'
 
 const OPTIONS: readonly { value: GiftViewMode; label: string }[] = [
-  { value: 'grid2', label: 'Visualização em 2 colunas' },
-  { value: 'grid3', label: 'Visualização em 3 colunas' },
+  { value: 'grid', label: 'Visualização em grade' },
   { value: 'list', label: 'Visualização em lista' },
 ]
 
 type GiftViewToggleProps = {
   value: GiftViewMode
   onChange: (value: GiftViewMode) => void
+}
+
+function IconGrid() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" aria-hidden>
+      <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" fill="currentColor" />
+      <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" fill="currentColor" />
+      <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" fill="currentColor" opacity="0.85" />
+      <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" fill="currentColor" opacity="0.85" />
+    </svg>
+  )
+}
+
+function IconList() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0" aria-hidden>
+      <rect x="4" y="5" width="16" height="3" rx="1.5" fill="currentColor" />
+      <rect x="4" y="10.5" width="16" height="3" rx="1.5" fill="currentColor" opacity="0.88" />
+      <rect x="4" y="16" width="16" height="3" rx="1.5" fill="currentColor" opacity="0.72" />
+    </svg>
+  )
 }
 
 export function GiftViewToggle({ value, onChange }: GiftViewToggleProps) {
@@ -74,29 +94,7 @@ export function GiftViewToggle({ value, onChange }: GiftViewToggleProps) {
                 : 'text-truffle/70 hover:bg-white hover:text-truffle'
             }`}
           >
-            {option.value === 'grid2' ? (
-              <svg viewBox="0 0 24 24" aria-hidden className="h-4.5 w-4.5">
-                <rect x="3" y="5" width="8" height="6" rx="1.5" fill="currentColor" />
-                <rect x="13" y="5" width="8" height="6" rx="1.5" fill="currentColor" />
-                <rect x="3" y="13" width="8" height="6" rx="1.5" fill="currentColor" opacity="0.75" />
-                <rect x="13" y="13" width="8" height="6" rx="1.5" fill="currentColor" opacity="0.75" />
-              </svg>
-            ) : option.value === 'grid3' ? (
-              <svg viewBox="0 0 24 24" aria-hidden className="h-4.5 w-4.5">
-                <rect x="3" y="5" width="5" height="6" rx="1.3" fill="currentColor" />
-                <rect x="9.5" y="5" width="5" height="6" rx="1.3" fill="currentColor" />
-                <rect x="16" y="5" width="5" height="6" rx="1.3" fill="currentColor" />
-                <rect x="3" y="13" width="5" height="6" rx="1.3" fill="currentColor" opacity="0.75" />
-                <rect x="9.5" y="13" width="5" height="6" rx="1.3" fill="currentColor" opacity="0.75" />
-                <rect x="16" y="13" width="5" height="6" rx="1.3" fill="currentColor" opacity="0.75" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" aria-hidden className="h-4.5 w-4.5">
-                <rect x="4" y="5" width="16" height="3" rx="1.5" fill="currentColor" />
-                <rect x="4" y="10.5" width="16" height="3" rx="1.5" fill="currentColor" opacity="0.85" />
-                <rect x="4" y="16" width="16" height="3" rx="1.5" fill="currentColor" opacity="0.7" />
-              </svg>
-            )}
+            {option.value === 'grid' ? <IconGrid /> : <IconList />}
           </button>
         )
       })}

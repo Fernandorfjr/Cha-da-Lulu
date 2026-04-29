@@ -12,7 +12,7 @@ import type { GiftItem } from '../types'
 
 export function GiftList() {
   const [activeCategory, setActiveCategory] = useState<string>('Todas')
-  const [viewMode, setViewMode] = useState<GiftViewMode>('grid3')
+  const [viewMode, setViewMode] = useState<GiftViewMode>('grid')
   const [selectedGift, setSelectedGift] = useState<GiftItem | null>(null)
 
   const filteredGifts = useMemo(() => {
@@ -26,9 +26,7 @@ export function GiftList() {
   const listLayoutClass =
     viewMode === 'list'
       ? 'flex flex-col gap-3 sm:gap-4'
-      : viewMode === 'grid2'
-        ? 'grid gap-4 sm:gap-6 sm:grid-cols-2'
-        : 'grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3'
+      : 'grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3'
 
   return (
     <>

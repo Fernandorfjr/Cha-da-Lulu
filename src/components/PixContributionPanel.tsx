@@ -141,12 +141,11 @@ export function PixContributionPanel({
                 opacity: [0.94, 1],
                 x: [-14, 0],
                 scale: [0.99, 1],
-                filter: ['blur(2px)', 'blur(0px)'],
               }
         }
-        viewport={{ once: false, amount: 0.12 }}
+        viewport={{ once: true, amount: 0.12 }}
         transition={{ duration: prefersReducedMotion ? 0.2 : 0.45, ease: [0.22, 1, 0.36, 1] }}
-        style={{ willChange: 'transform, opacity, filter' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         {qrBlock}
       </motion.div>
@@ -159,16 +158,15 @@ export function PixContributionPanel({
                 opacity: [0.94, 1],
                 x: [14, 0],
                 scale: [0.99, 1],
-                filter: ['blur(2px)', 'blur(0px)'],
               }
         }
-        viewport={{ once: false, amount: 0.12 }}
+        viewport={{ once: true, amount: 0.12 }}
         transition={{
           duration: prefersReducedMotion ? 0.2 : 0.45,
           delay: prefersReducedMotion ? 0 : 0.04,
           ease: [0.22, 1, 0.36, 1],
         }}
-        style={{ willChange: 'transform, opacity, filter' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         {detailsBlock}
       </motion.div>

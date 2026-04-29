@@ -13,11 +13,10 @@ export function Footer() {
         opacity: [0.93, 1],
         y: [18, 0],
         scale: [0.99, 1],
-        filter: ['blur(3px)', 'blur(0px)'],
       }}
-      viewport={{ once: false, amount: 0.35 }}
+      viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
-      style={{ willChange: 'transform, opacity, filter' }}
+      style={{ willChange: 'transform, opacity' }}
     >
       <div className="soft-divider" />
       <div className="flex flex-col gap-4 py-8 text-center sm:py-10">

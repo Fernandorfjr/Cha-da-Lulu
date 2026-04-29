@@ -30,11 +30,10 @@ export function SectionWrapper({
           opacity: [0.92, 1],
           y: [24, 0],
           scale: [0.985, 1],
-          filter: ['blur(4px)', 'blur(0px)'],
         }}
-        viewport={{ once: false, amount: 0.02, margin: '0px 0px -80px 0px' }}
+        viewport={{ once: true, amount: 0.12, margin: '0px 0px -80px 0px' }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        style={{ willChange: 'transform, opacity, filter' }}
+        style={{ willChange: 'transform, opacity' }}
       >
         {(label ?? title ?? description ?? headerSlot) && (
           <div className="mb-8 max-w-3xl sm:mb-12">

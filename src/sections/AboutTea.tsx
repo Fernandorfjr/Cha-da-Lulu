@@ -27,16 +27,15 @@ export function AboutTea() {
                     opacity: [0.94, 1],
                     y: [14, 0],
                     scale: [0.99, 1],
-                    filter: ['blur(2px)', 'blur(0px)'],
                   }
             }
-            viewport={{ once: false, amount: 0.12 }}
+            viewport={{ once: true, amount: 0.12 }}
             transition={{
               duration: prefersReducedMotion ? 0.2 : 0.45,
               delay: prefersReducedMotion ? 0 : index * 0.05,
               ease: [0.22, 1, 0.36, 1],
             }}
-            style={{ willChange: 'transform, opacity, filter' }}
+            style={{ willChange: 'transform, opacity' }}
             className="glass-panel-strong relative overflow-hidden p-7"
           >
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-champagne/70 to-transparent" />
