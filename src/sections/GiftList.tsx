@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 
 import { CategoryFilter } from '../components/CategoryFilter'
+import { CategoryFilterMobile } from '../components/CategoryFilterMobile'
 import { GiftCard } from '../components/GiftCard'
 import { GiftDetailModal } from '../components/GiftDetailModal'
 import { GiftViewToggle } from '../components/GiftViewToggle'
@@ -47,7 +48,18 @@ export function GiftList() {
           </p>
         </div>
         <div className="flex min-w-0 flex-1 flex-col gap-3 sm:items-end sm:justify-end">
-          <div className="-mx-1 flex w-full min-w-0 justify-end overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex w-full min-w-0 items-center gap-3 sm:hidden">
+            <CategoryFilterMobile
+              className="min-w-0 flex-1"
+              categories={giftCategories}
+              activeCategory={activeCategory}
+              onChange={setActiveCategory}
+            />
+            <div className="shrink-0">
+              <GiftViewToggle value={viewMode} onChange={setViewMode} />
+            </div>
+          </div>
+          <div className="-mx-1 hidden w-full min-w-0 justify-end overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex">
             <div className="flex w-max max-w-none flex-nowrap items-center gap-x-5 sm:gap-x-8">
               <CategoryFilter
                 categories={giftCategories}
