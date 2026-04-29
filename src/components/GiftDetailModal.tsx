@@ -9,6 +9,10 @@ const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 })
 
+/** Botões do topo do modal (Voltar / Fechar) — mesmo visual. */
+const modalChromeButtonClass =
+  'inline-flex shrink-0 items-center gap-1.5 rounded-full border border-rose/60 bg-white px-3 py-2 text-[0.82rem] font-semibold text-truffle shadow-sm transition hover:bg-blush/40'
+
 type GiftDetailModalProps = {
   gift: GiftItem | null
   onClose: () => void
@@ -35,10 +39,29 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
   const dialogLabelledBy = pixOpen && narrowLayout ? pixStepTitleId : titleId
 
   useEffect(() => {
-    const prev = document.body.style.overflow
+    const scrollY = window.scrollY
+    const prevOverflow = document.body.style.overflow
+    const prevPosition = document.body.style.position
+    const prevTop = document.body.style.top
+    const prevLeft = document.body.style.left
+    const prevRight = document.body.style.right
+    const prevWidth = document.body.style.width
+
     document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
+    document.body.style.width = '100%'
+
     return () => {
-      document.body.style.overflow = prev
+      document.body.style.overflow = prevOverflow
+      document.body.style.position = prevPosition
+      document.body.style.top = prevTop
+      document.body.style.left = prevLeft
+      document.body.style.right = prevRight
+      document.body.style.width = prevWidth
+      window.scrollTo(0, scrollY)
     }
   }, [])
 
@@ -79,10 +102,12 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
     </>
   )
 
+  const showPixStepHeader = pixOpen && narrowLayout
+
   return (
     <motion.div
       role="presentation"
-      className="fixed inset-0 z-[100] flex items-end justify-center bg-truffle/45 p-2 backdrop-blur-sm sm:items-center sm:p-6"
+      className="fixed inset-0 z-[100] flex items-end justify-center overscroll-y-contain bg-truffle/45 p-2 backdrop-blur-sm sm:items-center sm:p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -97,26 +122,52 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.98 }}
         transition={{ type: 'spring', damping: 30, stiffness: 340 }}
-        className={`relative flex w-full max-w-lg flex-col overflow-hidden rounded-[1.35rem] border border-white/75 bg-white/95 shadow-soft backdrop-blur sm:rounded-[1.75rem] ${
+        className={`relative flex w-full max-w-lg flex-col overflow-hidden overscroll-y-contain rounded-[1.35rem] border border-white/75 bg-white/95 shadow-soft backdrop-blur sm:rounded-[1.75rem] ${
           pixOpen ? 'max-h-[min(85dvh,920px)] lg:max-h-[min(92dvh,920px)] lg:max-w-6xl' : 'max-h-[min(85dvh,920px)] sm:max-h-[min(92dvh,920px)]'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-2.5 top-2.5 z-10 rounded-full border border-white/80 bg-white/90 px-3.5 py-2 text-[0.82rem] font-medium text-truffle/80 shadow-soft transition hover:bg-white hover:text-truffle sm:right-3 sm:top-3 sm:px-4 sm:text-sm"
-        >
-          Fechar
-        </button>
+        <header className="flex shrink-0 items-center gap-2 border-b border-rose/25 bg-white/90 px-3 py-2.5 sm:px-4">
+          {showPixStepHeader ? (
+            <>
+              <button
+                ref={backButtonRef}
+                type="button"
+                onClick={() => setPixOpen(false)}
+                className={modalChromeButtonClass}
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden>
+                  <path
+                    fill="currentColor"
+                    d="M15.5 5.5 8 12l7.5 6.5 1.4-1.6L10.8 12l6.1-5.9-1.4-1.6Z"
+                  />
+                </svg>
+                Voltar
+              </button>
+              <h2
+                id={pixStepTitleId}
+                className="min-w-0 flex-1 truncate text-center font-display text-base font-semibold leading-tight text-truffle lg:hidden"
+              >
+                Contribuir com Pix
+              </h2>
+            </>
+          ) : null}
+          <button
+            type="button"
+            onClick={onClose}
+            className={`${modalChromeButtonClass} ${showPixStepHeader ? '' : 'ml-auto'}`}
+          >
+            Fechar
+          </button>
+        </header>
 
         <div
-          className={`grid min-h-0 flex-1 overflow-hidden ${
+          className={`grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] overflow-hidden overscroll-y-contain ${
             pixOpen ? 'lg:grid-cols-2 lg:divide-x lg:divide-rose/25' : 'grid-cols-1'
           }`}
         >
           <div
-            className={`min-h-0 flex-col gap-4 overflow-y-auto p-4 pt-12 sm:gap-5 sm:p-8 sm:pt-14 ${
+            className={`min-h-0 flex-col gap-4 overflow-y-auto overscroll-y-contain p-4 sm:gap-5 sm:p-8 ${
               pixOpen ? 'hidden lg:flex' : 'flex'
             }`}
           >
@@ -134,7 +185,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
             </span>
             <h2
               id={titleId}
-              className="pr-12 font-display text-[1.55rem] font-semibold leading-tight text-truffle sm:pr-14 sm:text-[2.15rem]"
+              className="font-display text-[1.55rem] font-semibold leading-tight text-truffle sm:text-[2.15rem]"
             >
               {gift.name}
             </h2>
@@ -168,32 +219,9 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 12 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="flex min-h-0 flex-1 flex-col overflow-hidden border-t border-rose/20 bg-cream/35 lg:max-h-[min(92dvh,920px)] lg:overflow-y-auto lg:border-t-0"
+                className="flex min-h-0 flex-1 flex-col overflow-hidden overscroll-y-contain border-t border-rose/20 bg-cream/35 lg:max-h-[min(92dvh,920px)] lg:overflow-y-auto lg:border-t-0"
               >
-                <div className="flex shrink-0 items-center gap-2 border-b border-rose/25 bg-white/90 px-3 py-3 pr-14 pt-12 sm:px-4 sm:pt-14 lg:hidden">
-                  <button
-                    ref={backButtonRef}
-                    type="button"
-                    onClick={() => setPixOpen(false)}
-                    className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-rose/60 bg-white px-3 py-2 text-[0.82rem] font-semibold text-truffle transition hover:bg-blush/40"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-                      <path
-                        fill="currentColor"
-                        d="M15.5 5.5 8 12l7.5 6.5 1.4-1.6L10.8 12l6.1-5.9-1.4-1.6Z"
-                      />
-                    </svg>
-                    Voltar
-                  </button>
-                  <h2
-                    id={pixStepTitleId}
-                    className="min-w-0 flex-1 font-display text-base font-semibold leading-tight text-truffle"
-                  >
-                    Contribuir com Pix
-                  </h2>
-                </div>
-
-                <div className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-8 lg:overflow-visible lg:p-8">
+                <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-4 sm:p-8 lg:overflow-visible lg:p-8">
                   {pixIntro}
                 </div>
               </motion.div>
