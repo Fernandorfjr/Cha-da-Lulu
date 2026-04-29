@@ -41,21 +41,51 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
   useLayoutEffect(() => {
     const root = document.documentElement
     const body = document.body
+    const scrollY = window.scrollY
+
     const prevRootOverflow = root.style.overflow
-    const prevBodyOverflow = body.style.overflow
+    const prevRootHeight = root.style.height
     const prevRootPaddingRight = root.style.paddingRight
+    const prevRootOverscroll = root.style.overscrollBehavior
+    const prevBodyOverflow = body.style.overflow
+    const prevBodyPosition = body.style.position
+    const prevBodyTop = body.style.top
+    const prevBodyLeft = body.style.left
+    const prevBodyRight = body.style.right
+    const prevBodyWidth = body.style.width
+
     const scrollbarWidth = window.innerWidth - root.clientWidth
 
     root.style.overflow = 'hidden'
-    body.style.overflow = 'hidden'
+    root.style.height = '100%'
+    root.style.overscrollBehavior = 'none'
     if (scrollbarWidth > 0) {
       root.style.paddingRight = `${scrollbarWidth}px`
     }
 
+    body.style.overflow = 'hidden'
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.left = '0'
+    body.style.right = '0'
+    body.style.width = '100%'
+
     return () => {
       root.style.overflow = prevRootOverflow
-      body.style.overflow = prevBodyOverflow
+      root.style.height = prevRootHeight
       root.style.paddingRight = prevRootPaddingRight
+      root.style.overscrollBehavior = prevRootOverscroll
+
+      body.style.overflow = prevBodyOverflow
+      body.style.position = prevBodyPosition
+      body.style.top = prevBodyTop
+      body.style.left = prevBodyLeft
+      body.style.right = prevBodyRight
+      body.style.width = prevBodyWidth
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' })
+      })
     }
   }, [])
 

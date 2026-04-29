@@ -55,11 +55,11 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
             {gift.detail}
           </p>
         </div>
-        <div className="flex min-w-0 max-w-[42%] flex-col items-end justify-center self-center text-right sm:max-w-none sm:shrink-0 sm:basis-auto">
+        <div className="flex min-w-0 max-w-[42%] flex-col items-start justify-center self-center text-left sm:max-w-none sm:shrink-0 sm:basis-auto sm:items-end sm:text-right">
           <span className="max-w-full text-[0.58rem] font-semibold uppercase leading-snug tracking-[0.12em] text-truffle/45 sm:text-[0.65rem] sm:tracking-[0.2em]">
             Valor sugerido
           </span>
-          <p className="mt-1 max-w-full break-words font-display text-lg font-semibold tabular-nums leading-tight text-truffle sm:text-xl md:text-2xl">
+          <p className="mt-1 max-w-full break-words text-left font-display text-lg font-semibold tabular-nums leading-tight text-truffle sm:text-right sm:text-xl md:text-2xl">
             {currencyFormatter.format(gift.suggestedValue)}
           </p>
         </div>
@@ -110,11 +110,11 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
 
         <div className="soft-divider" />
 
-        <div className="flex flex-col gap-1.5 min-[400px]:flex-row min-[400px]:flex-wrap min-[400px]:items-end min-[400px]:justify-between min-[400px]:gap-x-4">
+        <div className="flex flex-col items-start gap-1.5 text-left min-[400px]:flex-row min-[400px]:flex-wrap min-[400px]:items-end min-[400px]:justify-between min-[400px]:gap-x-4 min-[400px]:text-left">
           <span className="text-xs font-semibold uppercase tracking-[0.28em] text-truffle/45">
             Valor sugerido
           </span>
-          <p className="font-display text-[1.55rem] font-semibold tabular-nums leading-none text-truffle min-[400px]:text-right min-[400px]:text-[1.85rem] sm:text-[2.15rem]">
+          <p className="w-full text-left font-display text-[1.55rem] font-semibold tabular-nums leading-none text-truffle min-[400px]:w-auto min-[400px]:text-right min-[400px]:text-[1.85rem] sm:text-[2.15rem]">
             {currencyFormatter.format(gift.suggestedValue)}
           </p>
         </div>
