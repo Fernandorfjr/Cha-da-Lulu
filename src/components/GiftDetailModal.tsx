@@ -167,7 +167,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
                 />
               </div>
             </div>
-            <span className="inline-flex w-fit rounded-full bg-truffle px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-soft ring-1 ring-white/35">
+            <span className="inline-flex w-fit rounded-full border border-rose bg-blush px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-truffle shadow-soft">
               {gift.category}
             </span>
             <h2
@@ -190,7 +190,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
               <button
                 type="button"
                 onClick={() => setPixOpen((v) => !v)}
-                className="button-primary w-full max-w-md lg:w-auto lg:min-w-[12.5rem] lg:max-w-lg"
+                className="button-primary w-full max-w-md lg:w-auto lg:min-h-[4rem] lg:min-w-[12.5rem] lg:max-w-lg lg:px-10 lg:py-4 lg:text-base"
               >
                 <span className="lg:hidden">Presentear</span>
                 <span className="hidden lg:inline">

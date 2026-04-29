@@ -45,7 +45,7 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
           />
         </div>
         <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 sm:gap-2">
-          <span className="inline-flex w-fit rounded-full bg-truffle/92 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white shadow-soft ring-1 ring-white/35">
+          <span className="inline-flex w-fit rounded-full border border-rose bg-blush px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-truffle shadow-soft">
             {gift.category}
           </span>
           <h3 className="font-display text-base font-semibold leading-tight text-truffle sm:text-lg">
@@ -94,7 +94,7 @@ export function GiftCard({ gift, index = 0, onSelect, variant = 'card' }: GiftCa
               aria-hidden
             />
           </div>
-          <span className="absolute left-3 top-3 z-10 rounded-full bg-truffle/92 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white shadow-soft ring-1 ring-white/40 backdrop-blur-[2px] sm:left-4 sm:top-4 sm:px-3.5 sm:text-xs sm:tracking-[0.2em]">
+          <span className="absolute left-3 top-3 z-10 rounded-full border border-rose bg-blush px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-truffle shadow-soft sm:left-4 sm:top-4 sm:px-3.5 sm:text-xs sm:tracking-[0.2em]">
             {gift.category}
           </span>
         </div>
