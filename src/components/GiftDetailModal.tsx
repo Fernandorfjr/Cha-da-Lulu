@@ -159,7 +159,7 @@ function GiftDetailModalContent({ gift, onClose }: { gift: GiftItem; onClose: ()
       </p>
       <p className="mt-3 text-[0.9rem] leading-6 text-truffle/72 sm:text-[0.95rem] sm:leading-7">
         A lista funciona como uma referência de sugestões e valores. Contribua com o que fizer sentido pra você! É só
-        abrir o app do banco, escanear o QR code ou colar a chave. Se preferir cartão ou quiser combinar algo com a
+        abrir o app do banco, escanear o QR code ou colar a chave. Se preferir ou quiser combinar algo com a
         gente, a mamãe responde num toque no WhatsApp.
       </p>
       <p className="mt-4 text-xs font-semibold uppercase tracking-[0.26em] text-truffle/45">

@@ -38,7 +38,7 @@ export const siteConfig = {
       'Para tornar tudo prático e especial, separamos algumas sugestões de presentes para ajudar quem quiser participar da chegada da nossa Luisa.',
     points: [
       'Se quiser participar, temos alguns itens na lista para usar como referência. Tudo aqui foi pensado só para facilitar, fique totalmente à vontade.',
-      'A opção principal que deixamos é o Pix, por ser mais simples, fácil e rápido, mas se preferir podemos gerar um link para contribuições no cartão de crédito.',
+      'A opção principal que deixamos é o Pix, por ser mais simples, fácil e rápido, mas se preferir ou quiser combinar algo, é só falar com a gente.',
       'O mais importante pra gente é ter vocês, mesmo que de longe, fazendo parte disso. Cada mensagem, cada gesto e cada lembrança significa muito pra gente.',
     ],
   },
@@ -46,7 +46,7 @@ export const siteConfig = {
     badge: 'Contribuição',
     title: 'Se fizer sentido pra você participar com a gente, deixamos o Pix aqui.',
     description:
-      'O QR code está logo abaixo, mas se preferir você pode usar a chave Pix também. E, caso queira fazer por cartão, é só mandar uma mensagem pra mamãe que ela envia o link!',
+      'O QR code está logo abaixo, mas se preferir você pode usar a chave Pix também. E, caso queira mandar uma mensagem ou combinar algo, é só falar com a mamãe!',
     qrCodeImage: '/images/qr-code.png',
     qrCodeHint: 'Use da forma que for mais prática pra você.',
     keyLabel: 'Chave Pix',
