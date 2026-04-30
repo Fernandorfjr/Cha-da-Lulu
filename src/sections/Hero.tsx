@@ -8,7 +8,7 @@ export function Hero() {
   const prefersReducedMotion = useReducedMotion()
   const highlights = [
     ['De longe, mas juntos', 'Mesmo à distância, vocês fazem parte desse momento com a gente.'],
-    ['Um jeitinho de aproximar', 'Criamos esse espaço para dividir um pouco dessa fase com vocês.'],
+    ['Um jeitinho de aproximar', 'Criamos esse espaço pra dividir um pouco dessa fase com vocês.'],
     ['Com muito carinho', 'Cada detalhe aqui foi pensado com amor para a chegada da Luisa.'],
   ]
 

@@ -27,7 +27,7 @@ export const siteConfig = {
       'Gostariamos muito poder viver esse momento de forma mais próxima de todo mundo, mas como as condições não favorecem, encontramos nesse chá online um jeito de dividir um pouco dessa fase com vocês.',
     image: '/images/baby-photo.jpeg',
     highlights: [
-      { label: 'Momento', value: 'Esperando com amor e serenidade' },
+      { label: 'Momento', value: 'Vivendo essa fase com muita expectativa' },
       { label: 'Com amor de', value: 'Mamãe, papai e toda a família' },
     ],
   },
